@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTblCategory extends Migration
+class CreateTblPelanggan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateTblCategory extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_category', function (Blueprint $table) {
+        Schema::create('tbl_pelanggan', function (Blueprint $table) {
             $table->id();
-            $table->string('kategori');
-            $table->string('keterangan');
+            $table->string('pelanggan');
+            $table->string('alamat');
+            $table->string('no_hp');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateTblCategory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_category');
+        Schema::dropIfExists('tbl_pelanggan');
     }
 }
