@@ -12,26 +12,41 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return response()->json("Ini index");
+        $data = Category_Model::all();
+
+        return response()->json($data);
     }
     
-    public function view(Category_Model $category)
+    public function view($id)
     {   
-        return response()->json("Ini view$category");
+        $data = Category_Model::where('id', $id)->first();
+
+        return response()->json($data);
     }
 
     public function insert(Request $request)
     {   
-        return response()->json($request);
+        $this->validate($request, [
+            'kategori' => 'required|unique:tbl_category',
+            'keterangan' => 'required'
+        ]);
+
+        $category = Category_Model::create($request->all());
+
+        return response()->json($category);
     }
 
-    public function update(Category_Model $category)
+    public function update(Request $request, $id)
     {   
-        return response()->json("Ini update $category");
+        Category_Model::where('id', $id)->update($request->all());
+
+        return response()->json("Data Berhasil diupdate");
     }
 
-    public function delete(Category_Model $category)
+    public function delete($id)
     {   
-        return response()->json("Ini delete $category");
+        Category_Model::where('id', $id)->delete($id);
+
+        return response()->json("Data Berhasil dihapus");
     }
 }

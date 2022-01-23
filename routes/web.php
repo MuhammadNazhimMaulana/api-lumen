@@ -18,9 +18,23 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'api'], function() use ($router){
-    $router->get('category', ['uses' => 'Api\CategoryController@index']);
-    $router->get('category/{id}', ['uses' => 'Api\CategoryController@view']);
-    $router->post('category', ['uses' => 'Api\CategoryController@insert']);
-    $router->delete('category/{id}', ['uses' => 'Api\CategoryController@delete']);
-    $router->put('category/{id}', ['uses' => 'Api\CategoryController@update']);
+
+    // Kategori
+    $router->group(['prefix' => 'category'], function () use ($router){
+        $router->get('/', ['uses' => 'Api\CategoryController@index']);
+        $router->get('/{id}', ['uses' => 'Api\CategoryController@view']);
+        $router->post('/', ['uses' => 'Api\CategoryController@insert']);
+        $router->delete('/{id}', ['uses' => 'Api\CategoryController@delete']);
+        $router->put('/{id}', ['uses' => 'Api\CategoryController@update']);
+    });
+
+    // Pelanggan
+    $router->group(['prefix' => 'pelanggan'], function () use ($router){
+        $router->get('/', ['uses' => 'Api\PelangganController@index']);
+        $router->get('/{id}', ['uses' => 'Api\PelangganController@view']);
+        $router->post('/', ['uses' => 'Api\PelangganController@insert']);
+        $router->delete('/{id}', ['uses' => 'Api\PelangganController@delete']);
+        $router->put('/{id}', ['uses' => 'Api\PelangganController@update']);
+    });
+
 });
