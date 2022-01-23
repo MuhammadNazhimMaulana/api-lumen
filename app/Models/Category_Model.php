@@ -18,4 +18,10 @@ class Category_Model extends Model
 
     // Fillable
     protected $fillable = ['kategori', 'keterangan', 'created_at', 'updated_at'];
+
+    // Inverse
+    public function menu()
+    {
+        return $this->hasOne(Menu_Model::class, 'categoryId');
+    }
 }
