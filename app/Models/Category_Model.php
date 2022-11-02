@@ -22,6 +22,6 @@ class Category_Model extends Model
     // Inverse
     public function menu()
     {
-        return $this->hasOne(Menu_Model::class, 'categoryId');
+        return $this->hasMany(Menu_Model::class, 'categoryId');
     }
 }
